@@ -11,6 +11,7 @@ from langchain_ollama import ChatOllama
 
 from ai import job_matcher
 from ai.mcp_client import FilesystemMCPClient, MCPClientConfig, MCPClientError
+from ai.recruitment_mcp_client import RecruitmentMCPClient
 from ai.matching_graph import AgentDependencies, MatchingAgent
 from ai.rich_cli import MatchingCLI
 from rich.console import Console
@@ -31,7 +32,7 @@ async def _search_candidates(
     )
 
 
-def build_agent(mcp_client: Any) -> MatchingAgent:
+def build_agent(mcp_client: Any, round_client: Any | None = None) -> MatchingAgent:
     """Build the production graph around an already-connected MCP client."""
     llm = ChatOllama(
         model=os.getenv("MCP_OLLAMA_MODEL", "llama3.2:3b"),
@@ -43,6 +44,7 @@ def build_agent(mcp_client: Any) -> MatchingAgent:
             mcp_client=mcp_client,
             llm=llm,
             search_candidates=_search_candidates,
+            round_client=round_client,
         )
     )
 
@@ -64,22 +66,23 @@ async def run_cli(
             server_url=server_url,
         )
         async with FilesystemMCPClient(config) as client:
-            console.print(
-                Panel(
-                    f"Connected to [bold]{client.server_name}[/bold]\n"
-                    f"Discovered {len(client.tools)} MCP tools",
-                    title="MCP connection",
-                    border_style="green",
+            async with RecruitmentMCPClient() as round_client:
+                console.print(
+                    Panel(
+                        f"Connected to [bold]{client.server_name}[/bold]\n"
+                        f"Connected to [bold]{round_client.server_name}[/bold]\n"
+                        f"Discovered {len(client.tools) + len(round_client.tools)} MCP tools",
+                        title="MCP connection",
+                        border_style="green",
+                    )
                 )
-            )
-            completed = await MatchingCLI(
-                build_agent(client),
-                console=console,
-            ).run(job_description, thread_id=thread_id)
-            return 0 if completed else 1
+                completed = await MatchingCLI(
+                    build_agent(client, round_client), console=console,
+                ).run(job_description, thread_id=thread_id)
+                return 0 if completed else 1
     except (MCPClientError, ValueError):
         console.print(
-            "[bold red]Could not connect to the filesystem MCP server.[/bold red]"
+            "[bold red]Could not connect to an MCP server.[/bold red]"
         )
         return 1
 

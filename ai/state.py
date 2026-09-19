@@ -34,3 +34,4 @@ class AgentState(TypedDict, total=False):
     last_action: str
     min_years: int
     prior_shortlist: list[Candidate]
+    thread_id: str

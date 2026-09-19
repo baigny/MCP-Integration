@@ -12,13 +12,14 @@ A production-oriented resume matching system that replaces direct filesystem acc
 - Debounced directory watching with optional automatic ingestion
 - MCP client adapter used by the LangGraph matching agent
 - Rich CLI for the complete three-round candidate workflow
+- Optional second MCP server that persists screening-round history in SQLite
 - Unit, transport-integration, and end-to-end tests
 
-The optional multi-MCP bonus is not implemented. The core assignment does not require a second server.
+The multi-MCP bonus is implemented without an additional package: the agent uses the filesystem server for resume access and a SQLite-backed recruitment server for round auditing.
 
 ## Architecture
 
-The agent never reads resume files directly. It discovers the filesystem server's capabilities through MCP, uses Chroma to rank candidates, and calls the MCP `read_file` tool when detailed resume content is needed.
+The agent never reads resume files directly. It discovers the filesystem server's capabilities through MCP, uses Chroma to rank candidates, calls the MCP `read_file` tool when detailed resume content is needed, and records each generated round through the recruitment MCP server.
 
 See the [state machine and interaction diagrams](docs/state_machine.md) and [test scenarios](docs/test_scenarios.md).
 
@@ -53,6 +54,7 @@ Local settings are loaded from `.env`. The main variables are:
 | `MCP_OLLAMA_BASE_URL` | `http://localhost:11434` | Ollama endpoint |
 | `MCP_OLLAMA_MODEL` | `llama3.2:3b` | Chat model |
 | `MCP_BATCH_CONCURRENCY` | `4` | Maximum concurrent batch items |
+| `MCP_RECRUITMENT_DB` | `runtime/recruitment.db` | SQLite round-history database |
 
 Do not commit `.env`, `chroma_db`, or `.venv`.
 
@@ -102,6 +104,7 @@ On restricted Windows sandboxes, tests that create MCP subprocess pipes may requ
 
 ~~~text
 filesystem_mcp_server.py   MCP tools, resources, and transports
+recruitment_mcp_server.py  SQLite recruitment-history MCP server
 matching_agent.py          Production CLI entry point
 ai/                        MCP client and LangGraph workflow
 backend/                   File safety, watching, ingestion, and retrieval

@@ -85,7 +85,8 @@ class MatchingCLI:
         graph = self.agent.build_graph()
         config = self.agent.thread_config(thread_id or f"cli-{uuid4().hex[:8]}")
         graph_input: dict[str, Any] | Command = {
-            "messages": [HumanMessage(content=job_description.strip())]
+            "messages": [HumanMessage(content=job_description.strip())],
+            "thread_id": config["configurable"]["thread_id"],
         }
 
         while True:

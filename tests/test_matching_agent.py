@@ -32,6 +32,14 @@ class FakeLLM:
         return SimpleNamespace(content=self.responses.pop(0))
 
 
+class FakeRoundClient:
+    def __init__(self) -> None:
+        self.calls = []
+
+    async def record_round(self, *args) -> None:
+        self.calls.append(args)
+
+
 def candidate(name: str, score: float, path: str) -> dict:
     return {
         "candidate_name": name,
@@ -116,6 +124,19 @@ async def test_round_three_handles_mcp_read_failure() -> None:
     )
 
     assert "could not be read through MCP" in result["messages"][0].content
+
+
+@pytest.mark.asyncio
+async def test_report_is_recorded_through_second_mcp_server() -> None:
+    rounds = FakeRoundClient()
+    agent = MatchingAgent(AgentDependencies(
+        mcp_client=FakeMCPClient(), llm=FakeLLM([]),
+        search_candidates=lambda **_: [], round_client=rounds,
+    ))
+    top = candidate("Asha", 95, "data/resumes/asha.txt")
+    await agent.generate_report({"thread_id": "demo", "round": 1,
+                                 "shortlist": [top], "jd_text": "Python"})
+    assert rounds.calls == [("demo", 1, "Asha", 95)]
 
 
 def test_builds_six_node_langgraph() -> None:

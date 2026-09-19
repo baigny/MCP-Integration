@@ -13,6 +13,7 @@ flowchart LR
         Graph --> LLM[Ollama chat model]
         Graph --> Search[Hybrid candidate search]
         Graph --> Client[FilesystemMCPClient]
+        Graph --> AuditClient[RecruitmentMCPClient]
     end
 
     Search --> Chroma[(ChromaDB)]
@@ -27,6 +28,8 @@ flowchart LR
     Files --> Extract[TXT / PDF / DOCX / PPTX extraction]
     Extract --> Server
     Error --> Server
+    AuditClient <-->|MCP stdio| AuditServer[Recruitment MCP server]
+    AuditServer --> SQLite[(SQLite round history)]
 ~~~
 
 ## LangGraph state machine

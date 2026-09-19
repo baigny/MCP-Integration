@@ -34,6 +34,7 @@ class AgentDependencies:
     mcp_client: Any
     llm: Any
     search_candidates: SearchCandidates
+    round_client: Any | None = None
 
 
 def _candidate_lines(candidates: list[dict[str, Any]]) -> str:
@@ -172,6 +173,12 @@ class MatchingAgent:
                     f"(score {top.get('match_score', 0)}/100)\n"
                     f"{top.get('reasoning', '')}\n\nSuggested screening questions:\n{questions}"
                 )
+        if self.dependencies.round_client is not None:
+            top = shortlist[0] if shortlist else {}
+            await self.dependencies.round_client.record_round(
+                state.get("thread_id", "agent-session"), round_number,
+                top.get("candidate_name"), top.get("match_score"),
+            )
         return {
             "messages": [AIMessage(content=report)],
             "last_action": f"report_round_{round_number}",

@@ -1,14 +1,19 @@
 from pathlib import Path
+from uuid import uuid4
 
 import pytest
 
 
 @pytest.fixture
-def workspace(tmp_path: Path) -> dict[str, Path]:
+def workspace() -> dict[str, Path]:
     """Isolated roots used by filesystem and MCP contract tests."""
-    resumes = tmp_path / "resumes"
-    output = tmp_path / "output"
-    resumes.mkdir()
-    output.mkdir()
-    return {"root": tmp_path, "resumes": resumes, "output": output}
-
+    root = Path("output/test-workspaces") / uuid4().hex
+    resumes = root / "resumes"
+    output = root / "output"
+    resumes.mkdir(parents=True)
+    output.mkdir(parents=True)
+    return {
+        "root": root.resolve(),
+        "resumes": resumes.resolve(),
+        "output": output.resolve(),
+    }

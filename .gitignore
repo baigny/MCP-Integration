@@ -17,6 +17,7 @@ venv/
 # Local configuration and generated state
 .env
 chroma_db/
+runtime/
 output/
 *.log
 

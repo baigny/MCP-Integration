@@ -17,8 +17,7 @@ venv/
 # Local configuration and generated state
 .env
 chroma_db/
-output/*
-!output/.gitkeep
+output/
 *.log
 
 # Editors and operating systems

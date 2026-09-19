@@ -11,6 +11,8 @@ from mcp import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
 from mcp.client.streamable_http import streamable_http_client
 
+from ai.mcp_client import FilesystemMCPClient, MCPClientConfig
+
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 SERVER_SCRIPT = PROJECT_ROOT / "filesystem_mcp_server.py"
@@ -158,3 +160,19 @@ async def test_transport_returns_error_for_invalid_tool_arguments(
 
     assert result.is_error is True
     assert "filepath" in result.content[0].text.lower()
+
+
+@pytest.mark.integration
+@pytest.mark.asyncio
+async def test_adapter_connects_over_streamable_http(
+    http_server: str, workspace: dict[str, Path]
+) -> None:
+    resume = workspace["resumes"] / "candidate.txt"
+    resume.write_text("MCP engineer", encoding="utf-8")
+    config = MCPClientConfig(transport="http", server_url=http_server)
+
+    async with FilesystemMCPClient(config) as client:
+        result = await client.read_file(str(resume))
+
+    assert result["success"] is True
+    assert result["data"]["content"] == "MCP engineer"

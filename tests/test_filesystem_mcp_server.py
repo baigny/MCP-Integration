@@ -21,6 +21,7 @@ async def test_discovers_milestone_one_tools(mcp_server) -> None:
     tools = await mcp_server.list_tools()
 
     assert {tool.name for tool in tools} == {
+        "batch_process",
         "list_files",
         "read_file",
         "search_in_file",
@@ -53,6 +54,23 @@ async def test_tool_returns_domain_error_as_structured_result(
     assert result.is_error is False
     assert result.structured_content["success"] is False
     assert result.structured_content["error"]["code"] == "forbidden_path"
+
+
+@pytest.mark.asyncio
+async def test_calls_batch_process_tool(
+    mcp_server, workspace: dict[str, Path]
+) -> None:
+    resume = workspace["resumes"] / "candidate.txt"
+    resume.write_text("Python engineer", encoding="utf-8")
+
+    result = await mcp_server.call_tool(
+        "batch_process",
+        {"paths": [str(resume)], "operation": "read", "max_concurrency": 2},
+    )
+
+    assert result.is_error is False
+    assert result.structured_content["success"] is True
+    assert result.structured_content["data"]["summary"]["succeeded"] == 1
 
 
 @pytest.mark.asyncio

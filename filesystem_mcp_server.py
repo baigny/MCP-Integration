@@ -11,6 +11,7 @@ from typing import Any
 from dotenv import load_dotenv
 from mcp.server.mcpserver import MCPServer
 
+from backend.batch_processor import BatchProcessor
 from backend.filesystem_service import FileSystemService, SUPPORTED_EXTENSIONS
 
 
@@ -18,13 +19,21 @@ SERVER_NAME = "filesystem-mcp-server"
 SERVER_VERSION = "0.1.0"
 
 
+def _ingest_resume(filepath: str | Path) -> dict[str, Any]:
+    from backend.ingestion import ingest_resume
+
+    return ingest_resume(filepath)
+
+
 def create_server(
     service: FileSystemService,
     *,
     resume_root: str | Path,
+    batch_processor: BatchProcessor | None = None,
 ) -> MCPServer:
     """Create an MCP registry backed by an injected filesystem service."""
     root = Path(resume_root).expanduser().resolve()
+    processor = batch_processor or BatchProcessor(service, ingestor=_ingest_resume)
     server = MCPServer(
         name=SERVER_NAME,
         title="Resume Filesystem MCP Server",
@@ -59,6 +68,21 @@ def create_server(
     def search_in_file(filepath: str, keyword: str) -> dict[str, Any]:
         """Search one file or every supported file in a directory."""
         return service.search_in_file(filepath, keyword)
+
+    @server.tool(name="batch_process", structured_output=True)
+    async def batch_process(
+        paths: list[str],
+        operation: str,
+        keyword: str | None = None,
+        max_concurrency: int | None = None,
+    ) -> dict[str, Any]:
+        """Read, search, or ingest multiple files with bounded concurrency."""
+        return await processor.process(
+            paths,
+            operation=operation,
+            keyword=keyword,
+            max_concurrency=max_concurrency,
+        )
 
     @server.resource(
         "resumes://catalog",

@@ -25,6 +25,7 @@ async def test_discovers_milestone_one_tools(mcp_server) -> None:
         "list_files",
         "read_file",
         "search_in_file",
+        "watch_directory",
         "write_file",
     }
 

@@ -12,6 +12,7 @@ from dotenv import load_dotenv
 from mcp.server.mcpserver import MCPServer
 
 from backend.batch_processor import BatchProcessor
+from backend.directory_watcher import DirectoryWatchManager
 from backend.filesystem_service import FileSystemService, SUPPORTED_EXTENSIONS
 
 
@@ -30,10 +31,16 @@ def create_server(
     *,
     resume_root: str | Path,
     batch_processor: BatchProcessor | None = None,
+    watch_manager: DirectoryWatchManager | None = None,
 ) -> MCPServer:
     """Create an MCP registry backed by an injected filesystem service."""
     root = Path(resume_root).expanduser().resolve()
     processor = batch_processor or BatchProcessor(service, ingestor=_ingest_resume)
+    watcher = watch_manager or DirectoryWatchManager(
+        service,
+        ingestor=_ingest_resume,
+        debounce_seconds=float(os.getenv("MCP_WATCH_DEBOUNCE_SECONDS", "1.0")),
+    )
     server = MCPServer(
         name=SERVER_NAME,
         title="Resume Filesystem MCP Server",
@@ -83,6 +90,57 @@ def create_server(
             keyword=keyword,
             max_concurrency=max_concurrency,
         )
+
+    @server.tool(name="watch_directory", structured_output=True)
+    def watch_directory(
+        action: str,
+        directory: str | None = None,
+        watcher_id: str | None = None,
+        auto_ingest: bool = True,
+    ) -> dict[str, Any]:
+        """Start, inspect, or stop a watcher for new and modified resumes."""
+        normalized_action = action.strip().lower()
+        if normalized_action == "start":
+            if not directory:
+                return {
+                    "success": False,
+                    "data": None,
+                    "error": {
+                        "code": "invalid_directory",
+                        "message": "Start action requires a directory",
+                    },
+                }
+            return watcher.start(directory, auto_ingest=auto_ingest)
+        if normalized_action == "status":
+            if not watcher_id:
+                return {
+                    "success": False,
+                    "data": None,
+                    "error": {
+                        "code": "invalid_watcher_id",
+                        "message": "Status action requires a watcher ID",
+                    },
+                }
+            return watcher.status(watcher_id)
+        if normalized_action == "stop":
+            if not watcher_id:
+                return {
+                    "success": False,
+                    "data": None,
+                    "error": {
+                        "code": "invalid_watcher_id",
+                        "message": "Stop action requires a watcher ID",
+                    },
+                }
+            return watcher.stop(watcher_id)
+        return {
+            "success": False,
+            "data": None,
+            "error": {
+                "code": "invalid_action",
+                "message": "Action must be start, status, or stop",
+            },
+        }
 
     @server.resource(
         "resumes://catalog",

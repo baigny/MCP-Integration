@@ -1,0 +1,30 @@
+TITLE
+Senior Backend Engineer
+
+ABOUT
+We are seeking an experienced Senior Backend Engineer to join our development team and help drive the growth of our scalable, cloud-based platform. As a key member of our team, you will be responsible for designing, implementing, and maintaining our backend services, ensuring they are efficient, reliable, and secure.
+
+RESPONSIBILITIES
+
+* Design and develop high-performance, scalable backend services using Python and Django
+* Collaborate with the DevOps team to implement containerization using Docker and orchestrate deployments using AWS
+* Work with the database team to optimize PostgreSQL database performance and ensure data consistency
+* Participate in code reviews, provide constructive feedback, and mentor junior engineers
+* Troubleshoot and resolve complex technical issues, collaborating with cross-functional teams as needed
+* Develop and maintain documentation for backend services, including API documentation and technical guides
+
+REQUIREMENTS
+
+* At least 5 years of experience in backend development with a strong focus on Python and Django
+* Proficiency in PostgreSQL database management and performance optimization
+* Experience with Docker and AWS, with a strong understanding of containerization and cloud-based deployment
+* Strong problem-solving skills, with the ability to analyze complex technical issues and develop effective solutions
+* Excellent communication and collaboration skills, with the ability to work effectively with cross-functional teams
+
+NICE TO HAVE
+
+* Experience with asynchronous programming using libraries such as Celery or Zato
+* Familiarity with message queues such as RabbitMQ or Apache Kafka
+* Knowledge of containerization and orchestration tools such as Kubernetes or Apache Mesos
+* Experience with continuous integration and continuous deployment (CI/CD) pipelines using tools like Jenkins or GitLab CI/CD
+* Strong understanding of cloud security best practices and compliance requirements for AWS

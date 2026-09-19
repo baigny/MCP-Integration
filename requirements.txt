@@ -1,0 +1,15 @@
+mcp
+langgraph
+langchain-core
+langchain-ollama
+ollama
+sentence-transformers
+chromadb
+pypdf
+python-docx
+python-pptx
+fpdf2
+watchdog
+rich
+python-dotenv
+

@@ -1,0 +1,39 @@
+KAYLA JENKINS
+SUMMARY
+Highly motivated and detail-oriented Junior Frontend Developer with a strong foundation in React and JavaScript. Proficient in HTML, CSS, and Git, with a passion for creating user-friendly and visually appealing web applications.
+
+SKILLS
+- React ( Hooks, Context API, and Redux)
+- JavaScript (ES6+, Node.js, and Webpack)
+- HTML5 and CSS3 (Sass and CSS Modules)
+- Git (GitHub and GitLab)
+- Agile Development Methodologies
+- Version Control Systems
+- Webpack and Babel
+
+EXPERIENCE
+SOFTWARE ENGINEER INTERN
+TechNova Inc., San Francisco, CA
+June 2022 - August 2022
+- Collaborated with the frontend team to develop a scalable and maintainable React application
+- Implemented responsive design patterns using CSS Grid and Flexbox
+- Utilized Git for version control and collaborated with team members through GitHub
+
+FRONTEND DEVELOPER
+Eclipse Systems, New York, NY
+September 2021 - May 2022
+- Contributed to the development of a dynamic web application using React and Node.js
+- Designed and implemented reusable UI components using React Hooks and Context API
+- Worked closely with the backend team to integrate API calls and handle data fetching
+
+SOFTWARE DEVELOPMENT INTERN
+NovaTech, Boston, MA
+June 2020 - August 2020
+- Assisted in the development of a static website using HTML, CSS, and JavaScript
+- Learned and implemented Git version control, including merge requests and code reviews
+- Participated in code optimization and refactoring to improve application performance
+
+EDUCATION
+Bachelor of Science in Computer Science
+Boston University, Boston, MA
+2020

@@ -1,0 +1,26 @@
+NAME
+AARON KWAN
+
+SUMMARY
+Results-driven mobile developer with 5 years of experience in designing and developing scalable mobile applications for both iOS and Android platforms. Proven track record of delivering high-quality projects on time and on budget.
+
+SKILLS
+Swift, iOS, Kotlin, Android, REST APIs, Firebase, AWS, Git, Agile Methodologies
+
+EXPERIENCE
+Senior Mobile Developer, NovaTech Inc. (2018-2022)
+  - Led the development of a cross-platform mobile app for a leading e-commerce company, resulting in a 25% increase in sales within the first 6 months of launch.
+  - Collaborated with the design team to implement a sleek and modern UI for the app, utilizing Kotlin and Android architecture components.
+  - Developed and maintained a REST API for data synchronization between the mobile app and the server-side application, using AWS API Gateway and Lambda.
+
+Mobile Developer, ApexSoft (2015-2018)
+  - Contributed to the development of a popular social media app for iOS, which reached #1 in the App Store in the United States.
+  - Implemented user authentication and authorization using Firebase Authentication and Firestore.
+  - Worked closely with the QA team to identify and resolve critical bugs, resulting in a 30% reduction in app crashes.
+
+iOS Developer, ZetaByte (2013-2015)
+  - Developed and deployed a mobile app for tracking employee expenses, which was used by over 10,000 employees across the globe.
+  - Utilized Swift and iOS SDKs to create a seamless user experience and implemented data encryption for sensitive information.
+
+EDUCATION
+Bachelor of Science in Computer Science, Silicon Valley University (2013)

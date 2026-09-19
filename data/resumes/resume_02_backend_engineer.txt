@@ -1,0 +1,32 @@
+KAIYA JENKINS
+SUMMARY
+Highly skilled Senior Backend Engineer with 8 years of experience in designing, developing, and deploying scalable and efficient backend systems. Proven track record of leading cross-functional teams and mentoring junior engineers. Expertise in Python, Django, and PostgreSQL, with a strong focus on DevOps and cloud infrastructure.
+
+SKILLS
+• Python (3.x)
+• Django (1.11, 2.x)
+• PostgreSQL (9.x, 10.x)
+• Docker (CE, EE)
+• AWS (EC2, RDS, S3, Lambda)
+• Git (GitHub, GitLab)
+• Agile methodologies (Scrum, Kanban)
+• Strong understanding of computer science fundamentals (data structures, algorithms, etc.)
+
+EXPERIENCE
+SOFTWARE ENGINEER, AURORA TECHNOLOGIES (2018-PRESENT)
+• Led a team of 5 engineers in designing and implementing a real-time analytics platform using Django, PostgreSQL, and AWS Lambda
+• Collaborated with QA team to develop and implement automated testing frameworks for the platform
+• Migrated the platform to a containerized environment using Docker and Kubernetes
+
+SENIOR ENGINEER, NEXUS INFRASTRUCTURE (2015-2018)
+• Designed and developed a cloud-based API gateway using Python, Django, and AWS API Gateway
+• Worked with DevOps team to implement automated deployment and monitoring scripts using Ansible and Prometheus
+• Mentored junior engineers in Python and Django development best practices
+
+ENGINEER, SYNERGY SOFTWARE (2012-2015)
+• Contributed to the development of a large-scale e-commerce platform using Django, PostgreSQL, and AWS RDS
+• Participated in code reviews and ensured adherence to coding standards and best practices
+• Assisted in troubleshooting and debugging complex issues with the platform
+
+EDUCATION
+BACHELOR OF SCIENCE IN COMPUTER SCIENCE, RAVENSWOOD UNIVERSITY (2012)

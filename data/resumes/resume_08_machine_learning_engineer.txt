@@ -1,0 +1,35 @@
+**NAME**
+KATHERINE WYLDE
+
+**SUMMARY**
+Highly accomplished Senior Machine Learning Engineer with a strong background in developing and deploying AI/ML models for various industries. Proven expertise in MLOps, NLP, and deep learning frameworks such as PyTorch and TensorFlow. Skilled in Python programming and passionate about applying ML to real-world problems.
+
+**SKILLS**
+
+* Deep learning frameworks: PyTorch, TensorFlow
+* MLOps: model deployment, monitoring, and experimentation
+* NLP: text classification, sentiment analysis, named entity recognition
+* Programming: Python
+* Agile methodologies: Scrum, Kanban
+* Cloud platforms: AWS, GCP
+
+**EXPERIENCE**
+
+**Senior Machine Learning Engineer, NovaSpire Inc. (2018-2022)**
+* Led the development of a PyTorch-based model for sentiment analysis, achieving 95% accuracy on the test dataset
+* Collaborated with the DevOps team to deploy the model on a Kubernetes cluster using TensorFlow's serving API
+* Implemented MLOps pipelines using Apache Airflow and Docker containers
+
+**Machine Learning Engineer, Apex Insights (2015-2018)**
+* Contributed to the development of a TensorFlow-based model for image classification, achieving 90% accuracy on the test dataset
+* Worked with the data engineering team to integrate the model with a MySQL database for real-time predictions
+* Implemented a text preprocessing pipeline using NLTK and spaCy
+
+**Research Engineer, MIT CSAIL (2012-2015)**
+* Conducted research on deep learning architectures for NLP tasks, publishing two papers on arXiv
+* Developed a PyTorch-based implementation of a state-of-the-art model for text classification
+* Collaborated with the research team to develop a cloud-based platform for model deployment and experimentation
+
+**EDUCATION**
+
+* M.S. in Computer Science, Massachusetts Institute of Technology (2015)

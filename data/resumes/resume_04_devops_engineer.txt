@@ -1,0 +1,24 @@
+NAME
+KYLE RYDER
+
+SUMMARY
+Highly skilled Senior DevOps Engineer with 10+ years of experience designing and implementing scalable, secure, and efficient cloud infrastructure on AWS. Expertise in Kubernetes, Terraform, and CI/CD pipelines. Proven track record of improving deployment efficiency and reducing downtime.
+
+SKILLS
+Kubernetes (v1.20+), Terraform (v0.14+), AWS (EC2, S3, RDS, Lambda), CI/CD (Jenkins, GitLab), Linux (Red Hat, Ubuntu), Containerization (Docker), Automation (Ansible), Monitoring (Prometheus, Grafana)
+
+EXPERIENCE
+Senior DevOps Engineer, NovaTech (2018-Present)
+	* Designed and implemented a multi-region Kubernetes cluster on AWS, resulting in 30% reduction in deployment time and 25% reduction in cost
+	* Developed and maintained a Terraform configuration for infrastructure as code, ensuring consistency and repeatability across environments
+	* Collaborated with development teams to implement CI/CD pipelines, reducing deployment downtime from 2 hours to 15 minutes
+DevOps Engineer, Apex Solutions (2015-2018)
+	* Migrated a legacy application to containerized architecture using Docker, resulting in 40% reduction in resource utilization
+	* Developed and maintained a Jenkins-based CI/CD pipeline, automating testing, building, and deployment
+	* Collaborated with operations team to implement monitoring and logging using Prometheus and Grafana
+Junior DevOps Engineer, Orion IT (2012-2015)
+	* Assisted in designing and implementing a cloud-based infrastructure on AWS, resulting in 25% reduction in cost
+	* Developed and maintained a Linux-based automation script using Ansible, automating routine tasks and improving efficiency
+
+EDUCATION
+Bachelor of Science in Computer Science, Hudson University (2012)

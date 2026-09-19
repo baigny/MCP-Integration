@@ -1,0 +1,26 @@
+TITLE
+Senior Machine Learning Engineer
+
+ABOUT
+We are seeking a highly skilled Machine Learning Engineer to join our team of innovative technologists. As a Senior Machine Learning Engineer, you will be responsible for developing and deploying AI and machine learning models that drive business outcomes. Our team is passionate about using technology to solve real-world problems, and we're looking for someone who shares our enthusiasm.
+
+RESPONSIBILITIES
+* Design, develop, and deploy machine learning models using PyTorch and Python
+* Collaborate with cross-functional teams to integrate AI and machine learning capabilities into our products
+* Develop and maintain natural language processing (NLP) pipelines to extract insights from unstructured data
+* Ensure high-quality, reliable, and scalable machine learning models through rigorous testing and validation
+* Implement MLOps best practices to streamline model deployment and maintenance
+
+REQUIREMENTS
+* 4+ years of experience in machine learning engineering
+* Strong proficiency in PyTorch and Python
+* Experience with NLP libraries and frameworks (e.g. NLTK, spaCy, Stanford CoreNLP)
+* Familiarity with MLOps tools and methodologies (e.g. TensorFlow Serving, AWS SageMaker)
+* Bachelor's or Master's degree in Computer Science, Mathematics, or related field
+
+NICE TO HAVE
+* Experience with cloud-based machine learning platforms (e.g. AWS, GCP, Azure)
+* Knowledge of containerization and orchestration tools (e.g. Docker, Kubernetes)
+* Familiarity with DevOps practices and Agile methodologies
+* Published research or conference papers in machine learning or AI
+* Experience with automated testing and continuous integration/continuous deployment (CI/CD) pipelines

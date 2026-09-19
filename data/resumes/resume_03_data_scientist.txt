@@ -1,0 +1,24 @@
+KAITLYN A. WILSON
+
+SUMMARY
+Highly motivated and detail-oriented data scientist with 5+ years of experience in developing and implementing predictive models, data visualization, and statistical analysis. Proven track record of delivering high-quality results and collaborating with cross-functional teams.
+
+SKILLS
+Python, pandas, scikit-learn, SQL, statistics, data visualization (Matplotlib, Seaborn), data preprocessing, feature engineering, model selection and evaluation, data storytelling
+
+EXPERIENCE
+Senior Data Scientist, NovaTech Inc. (2018-Present)
+• Led the development of a predictive maintenance model using scikit-learn and pandas, resulting in a 25% reduction in equipment downtime
+• Collaborated with the marketing team to analyze customer behavior and develop targeted campaigns, resulting in a 15% increase in sales
+• Implemented data quality checks and data visualization tools to improve data integrity and communication with stakeholders
+Data Scientist, Atlas Analytics (2015-2018)
+• Worked with the engineering team to develop and deploy a real-time data pipeline using SQL and Python
+• Analyzed customer data to identify trends and patterns, resulting in a 10% increase in customer retention
+• Developed and maintained a dashboard to track key performance indicators (KPIs) and provide insights to senior management
+Junior Data Analyst, Insight Solutions (2012-2015)
+• Assisted in the development of a data visualization platform using Matplotlib and Seaborn
+• Conducted statistical analysis and data quality checks on large datasets
+• Collaborated with the data engineering team to design and implement a data warehouse using SQL
+
+EDUCATION
+Master of Science in Data Science, Pacific University (2015)

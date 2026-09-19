@@ -1,0 +1,43 @@
+NAME
+AUSTIN REED
+
+SUMMARY
+Highly skilled Senior Full Stack Developer with 8+ years of experience in designing and developing scalable, efficient, and maintainable web applications. Proficient in a range of technologies including React, Node.js, TypeScript, MongoDB, and GraphQL. Proven track record of delivering high-quality solutions on time and on budget.
+
+SKILLS
+• Full-stack development with React, Node.js, and TypeScript
+• Experience with MongoDB and GraphQL for data modeling and querying
+• Strong understanding of software design patterns and principles
+• Expertise in Jest and Enzyme for unit testing and integration testing
+• Strong knowledge of containerization with Docker and Kubernetes
+• Proficient in CI/CD pipelines with Jenkins and GitLab CI/CD
+
+EXPERIENCE
+**Senior Full Stack Developer**
+**CyberCorp Inc.**
+**2020-Present**
+
+• Led the development of a large-scale e-commerce platform using React, Node.js, and MongoDB, resulting in a 30% increase in sales within the first 6 months of launch
+• Designed and implemented a GraphQL API for real-time data querying and caching, reducing API call latency by 90%
+• Collaborated with the DevOps team to implement a CI/CD pipeline with Jenkins and Docker, resulting in a 50% reduction in deployment time
+
+**Full Stack Developer**
+**TechSpark Inc.**
+**2015-2020**
+
+• Developed a scalable and efficient web application using React, Node.js, and MongoDB, handling over 1 million user requests per month
+• Implemented a TypeORM-based data modeling solution, resulting in a 20% reduction in database queries
+• Collaborated with the QA team to implement automated unit testing and integration testing with Jest and Enzyme
+
+**Junior Full Stack Developer**
+**CodeFusion Inc.**
+**2012-2015**
+
+• Contributed to the development of a real-time analytics platform using React, Node.js, and MongoDB
+• Participated in code reviews and ensured adherence to coding standards and best practices
+• Collaborated with the DevOps team to implement a CI/CD pipeline with Jenkins and GitLab CI/CD
+
+EDUCATION
+**Bachelor of Science in Computer Science**
+**New Horizon University**
+**2012**

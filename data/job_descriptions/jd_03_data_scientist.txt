@@ -1,0 +1,26 @@
+TITLE
+Data Scientist
+
+ABOUT
+We are seeking an experienced Data Scientist to join our team at NovaTech, a leading provider of data analytics solutions for the energy industry. As a Data Scientist, you will be responsible for developing and implementing machine learning models to drive business growth and improve operational efficiency. You will work closely with our data engineering team to design and implement data pipelines, and collaborate with cross-functional teams to communicate insights and recommendations.
+
+RESPONSIBILITIES
+* Design and implement machine learning models to predict energy demand, optimize resource allocation, and improve forecasting accuracy
+* Develop and maintain complex SQL queries to extract and analyze large datasets
+* Collaborate with data engineers to design and implement data pipelines, ensuring data quality and integrity
+* Communicate complex technical concepts to non-technical stakeholders, using data visualizations and statistical analysis to drive business decisions
+* Stay up-to-date with industry trends and developments in machine learning and data science, incorporating new techniques and tools into our projects
+
+REQUIREMENTS
+* At least 3 years of experience in a data science or related role
+* Strong programming skills in Python, with experience using popular libraries such as scikit-learn and pandas
+* Advanced knowledge of machine learning concepts and techniques, including supervised and unsupervised learning
+* Proficiency in SQL and ability to design and implement complex queries
+* Strong understanding of statistical concepts and techniques, including hypothesis testing and regression analysis
+
+NICE TO HAVE
+* Experience with deep learning architectures and techniques
+* Familiarity with cloud-based data platforms, such as AWS or GCP
+* Knowledge of data visualization tools, such as Tableau or Power BI
+* Experience with containerization and DevOps practices, such as Docker and Kubernetes
+* Master's degree in Computer Science, Statistics, or related field

@@ -1,0 +1,28 @@
+TITLE
+Senior Full Stack Developer
+
+ABOUT
+We're seeking a seasoned Full Stack Developer to join our team of innovators in creating cutting-edge digital solutions for our clients. As a Senior Full Stack Developer, you will play a pivotal role in architecting, designing, and developing scalable and efficient web applications using the latest technologies. If you're passionate about coding, problem-solving, and collaborative work, we'd love to hear from you.
+
+RESPONSIBILITIES
+- Design, develop, and maintain robust, scalable, and high-performance web applications using React, Node.js, and MongoDB.
+- Collaborate with cross-functional teams to identify project requirements and provide technical expertise.
+- Develop and implement data models, APIs, and schema using GraphQL.
+- Conduct thorough code reviews, ensure adherence to coding standards, and participate in the continuous improvement of our codebase.
+- Troubleshoot and resolve technical issues, identifying and implementing efficient solutions.
+- Participate in the evaluation and implementation of new technologies to enhance our development workflow.
+
+REQUIREMENTS
+- At least 3 years of experience in software development, preferably in a Full Stack role.
+- Proficiency in React, Node.js, MongoDB, and GraphQL.
+- Strong understanding of front-end and back-end development principles.
+- Experience with Agile development methodologies, including Scrum and Kanban.
+- Excellent problem-solving skills, with the ability to work independently and collaboratively.
+- Strong communication and interpersonal skills.
+
+NICE TO HAVE
+- Experience with cloud-based services such as AWS or Azure.
+- Familiarity with containerization using Docker.
+- Knowledge of CI/CD pipelines and automated testing.
+- Experience with security best practices and threat modeling.
+- Strong understanding of DevOps principles and practices.

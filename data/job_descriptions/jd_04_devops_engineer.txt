@@ -1,0 +1,28 @@
+TITLE
+DevOps Engineer
+
+ABOUT
+Our company is a leading provider of cloud-based infrastructure solutions. We are seeking a highly skilled DevOps Engineer to join our team and help us build, deploy, and manage our applications. The successful candidate will be responsible for designing, implementing, and maintaining our cloud infrastructure, ensuring high availability, scalability, and security.
+
+RESPONSIBILITIES
+- Design, implement, and maintain our cloud infrastructure using AWS
+- Implement Continuous Integration and Continuous Deployment (CI/CD) pipelines using Jenkins and Terraform
+- Ensure the smooth operation of our applications by monitoring performance and making recommendations for improvement
+- Collaborate with development teams to ensure that applications are deployed efficiently and reliably
+- Troubleshoot issues and resolve problems in a timely and efficient manner
+- Document infrastructure and application configurations using tools such as Ansible and RDS
+
+REQUIREMENTS
+- At least 4 years of experience in DevOps engineering
+- Strong understanding of cloud infrastructure and DevOps practices
+- Proficient in Kubernetes, Terraform, and AWS
+- Experience with CI/CD pipelines and automation tools
+- Strong problem-solving and analytical skills
+- Excellent communication and collaboration skills
+
+NICE TO HAVE
+- Experience with containerization and orchestration using Docker and Kubernetes
+- Familiarity with infrastructure as code tools such as Ansible and Terraform
+- Knowledge of security best practices and compliance regulations
+- Experience with monitoring and logging tools such as Prometheus and ELK
+- Certification in AWS, Kubernetes, or other relevant technologies

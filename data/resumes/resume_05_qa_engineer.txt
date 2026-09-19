@@ -1,0 +1,29 @@
+KAITLYN R. JENKINS
+SUMMARY
+Dedicated Junior QA Engineer with a strong background in software testing and quality assurance. Proficient in a range of tools and technologies, with a focus on automation and manual testing.
+
+SKILLS
+- Programming languages: Python, Java
+- Testing frameworks: Selenium, pytest
+- Issue tracking and project management: JIRA
+- Operating systems: Windows, Linux
+- Experience with Agile methodologies
+
+EXPERIENCE
+Quality Assurance Engineer, TechNova Solutions (2020-2022)
+- Developed and executed manual test cases for mobile and web applications
+- Created and maintained automated test scripts using Selenium and pytest, resulting in a 30% reduction in testing time
+- Collaborated with development team to identify and resolve defects, ensuring timely delivery of software releases
+
+Junior Tester, OmniSoft Inc. (2018-2020)
+- Conducted manual testing for multiple software projects, including web and mobile applications
+- Assisted in the development and maintenance of test plans and test cases
+- Worked with QA team to prioritize and track defects in JIRA, ensuring timely resolution and implementation of fixes
+
+QA Intern, NovaTech Corporation (Summer 2017)
+- Assisted in the testing and debugging of multiple software projects, including desktop and web applications
+- Participated in the development and execution of manual test cases and automated test scripts
+- Contributed to the creation and maintenance of test plans and test cases
+
+EDUCATION
+Bachelor of Science in Computer Science, Pacific University (2018)

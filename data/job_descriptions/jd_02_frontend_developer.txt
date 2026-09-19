@@ -1,0 +1,31 @@
+TITLE
+Senior Frontend Developer
+
+ABOUT
+We're seeking an experienced Frontend Developer to join our team in the development of our flagship product, a cutting-edge e-commerce platform. As a key member of our team, you will be responsible for building and maintaining high-performance, scalable, and user-friendly web applications using the latest technologies.
+
+RESPONSIBILITIES
+- Collaborate with our design team to bring visually stunning and intuitive UI/UX designs to life
+- Develop and maintain high-quality, maintainable, and efficient frontend code using React, JavaScript, and TypeScript
+- Write clean, modular, and well-documented code that follows our company's coding standards
+- Work closely with our backend team to ensure seamless integration with our RESTful APIs
+- Troubleshoot and resolve complex frontend issues in a timely and efficient manner
+- Participate in code reviews and contribute to the improvement of our codebase
+- Stay up-to-date with the latest frontend trends, technologies, and best practices
+
+REQUIREMENTS
+- At least 2 years of experience as a Frontend Developer
+- Proficiency in React, JavaScript, TypeScript, and CSS
+- Strong understanding of web development principles, including HTML, CSS, and JavaScript
+- Experience with TypeScript and its ecosystem
+- Familiarity with CSS preprocessors like Sass or Less
+- Experience with frontend build tools like Webpack or Rollup
+- Strong problem-solving skills and attention to detail
+- Excellent communication and teamwork skills
+
+NICE TO HAVE
+- Experience with state management libraries like Redux or MobX
+- Familiarity with testing frameworks like Jest or Enzyme
+- Knowledge of containerization using Docker
+- Experience with cloud-based services like AWS or Google Cloud
+- Strong understanding of accessibility guidelines and best practices

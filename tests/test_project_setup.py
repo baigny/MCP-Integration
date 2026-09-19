@@ -20,5 +20,4 @@ def test_required_documentation_deliverables_exist() -> None:
     assert Path("README.md").is_file()
     assert Path("docs/state_machine.md").is_file()
     assert Path("docs/test_scenarios.md").is_file()
-    assert Path("docs/demo_script.md").is_file()
     assert Path("scripts/ingest_resumes.py").is_file()

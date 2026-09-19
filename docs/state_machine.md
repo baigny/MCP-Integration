@@ -1,64 +1,182 @@
-# Agent and MCP Architecture
+# Agent and MCP Interaction Flow
 
-## LangGraph state machine
+## End-to-end architecture
 
-~~~mermaid
-stateDiagram-v2
-    [*] --> parse_jd
-    parse_jd --> extract_requirements
-    extract_requirements --> search_resumes
-    search_resumes --> rank_candidates
-    rank_candidates --> generate_report
-    generate_report --> human_feedback
-    human_feedback --> extract_requirements: refine criteria
-    human_feedback --> generate_report: next screening round
-    human_feedback --> human_feedback: compare / explain / interview
-    human_feedback --> [*]: done
-~~~
-
-The graph is checkpointed by thread ID. The human feedback node uses a LangGraph
-interrupt, and the CLI resumes it with the reviewer's feedback.
-
-## Agent-to-MCP sequence
-
-~~~mermaid
-sequenceDiagram
-    actor Recruiter
-    participant CLI as Rich CLI
-    participant Graph as LangGraph Agent
-    participant Client as FilesystemMCPClient
-    participant Server as Filesystem MCP Server
-    participant FS as Allowed Filesystem
-    participant Chroma as ChromaDB
-    Recruiter->>CLI: Submit job description
-    CLI->>Graph: Start graph
-    Graph->>Chroma: Semantic + keyword candidate search
-    Chroma-->>Graph: Ranked candidate records
-    Graph-->>CLI: Round 1 report + interrupt
-    Recruiter->>CLI: Next round / refine / compare
-    CLI->>Graph: Resume with feedback
-    Graph->>Client: read_file
-    Client->>Server: tools/call over stdio or HTTP
-    Server->>FS: Validate root and extract content
-    FS-->>Server: Resume text and metadata
-    Server-->>Client: Structured MCP result
-    Client-->>Graph: Normalized result
-    Graph-->>CLI: Report / questions / recommendation
-~~~
-
-## Watch and ingestion flow
+This diagram makes the protocol boundary explicit. The LangGraph agent can query the vector index directly for ranking, but all resume-file access passes through the MCP client and server.
 
 ~~~mermaid
 flowchart LR
-    A[New or modified resume] --> B[Watchdog event]
-    B --> C{Supported extension?}
-    C -- No --> D[Ignore]
-    C -- Yes --> E{Duplicate inside debounce window?}
-    E -- Yes --> D
-    E -- No --> F[Background ingestion executor]
-    F --> G[Extract and chunk]
-    G --> H[Local sentence-transformer embeddings]
-    H --> I[ChromaDB upsert]
-    I --> J[Watcher status: processed]
-    F -->|failure| K[Watcher status: failed]
+    User([Recruiter]) --> CLI[Rich CLI]
+
+    subgraph Agent[LangGraph application]
+        CLI --> Graph[Matching state graph]
+        Graph --> LLM[Ollama chat model]
+        Graph --> Search[Hybrid candidate search]
+        Graph --> Client[FilesystemMCPClient]
+    end
+
+    Search --> Chroma[(ChromaDB)]
+
+    subgraph Protocol[MCP protocol boundary]
+        Client <-->|JSON-RPC 2.0<br/>stdio or Streamable HTTP| Server[Filesystem MCP server]
+    end
+
+    Server --> Guard{Path and extension valid?}
+    Guard -->|Yes| Files[(Allowed resume and output roots)]
+    Guard -->|No| Error[Structured MCP error]
+    Files --> Extract[TXT / PDF / DOCX / PPTX extraction]
+    Extract --> Server
+    Error --> Server
+~~~
+
+## LangGraph state machine
+
+The graph pauses at `human_feedback` through a LangGraph interrupt. Its checkpoint is keyed by thread ID, so the CLI can resume the same state with a `Command` containing the recruiter's response.
+
+~~~mermaid
+stateDiagram-v2
+    direction LR
+    [*] --> ParseJD
+    ParseJD --> ExtractRequirements
+    ExtractRequirements --> SearchResumes
+    SearchResumes --> RankCandidates
+    RankCandidates --> GenerateReport
+    GenerateReport --> HumanFeedback
+
+    state GenerateReport {
+        [*] --> SelectRound
+        SelectRound --> RankingReport: Round 1
+        SelectRound --> DeepComparison: Round 2
+        SelectRound --> MCPResumeRead: Round 3
+        MCPResumeRead --> Recommendation: read succeeds
+        MCPResumeRead --> SafeFallback: read fails
+        RankingReport --> [*]
+        DeepComparison --> [*]
+        Recommendation --> [*]
+        SafeFallback --> [*]
+    }
+
+    HumanFeedback --> ExtractRequirements: refine criteria
+    HumanFeedback --> GenerateReport: next round
+    HumanFeedback --> HumanFeedback: compare / explain / questions
+    HumanFeedback --> [*]: done / stop / exit
+~~~
+
+### Round progression
+
+~~~mermaid
+flowchart TD
+    R1[Round 1<br/>rank candidate pool] --> I1{{Human interrupt}}
+    I1 -->|next round| R2[Round 2<br/>LLM deep comparison]
+    R2 --> I2{{Human interrupt}}
+    I2 -->|next round| R3[Round 3<br/>MCP resume read]
+    R3 --> Result[Recommendation and<br/>five screening questions]
+
+    I1 -->|refine requirements| Filter[Extract constraints<br/>such as minimum years]
+    I2 -->|refine requirements| Filter
+    Filter --> R1
+
+    I1 -->|compare / explain / questions| Answer[Answer against current shortlist]
+    I2 -->|compare / explain / questions| Answer
+    Answer --> I1
+
+    I1 -->|done| End([End])
+    I2 -->|done| End
+~~~
+
+## Agent-to-MCP request sequence
+
+~~~mermaid
+sequenceDiagram
+    autonumber
+    actor Recruiter
+    participant CLI as Rich CLI
+    participant Graph as LangGraph
+    participant Search as Candidate search
+    participant Client as MCP client
+    participant Server as MCP server
+    participant FS as Allowed filesystem
+
+    CLI->>Client: Open configured transport
+    Client->>Server: initialize
+    Server-->>Client: capabilities and server info
+    Client->>Server: tools/list
+    Server-->>Client: six tool definitions
+    Client->>Client: verify required capabilities
+
+    Recruiter->>CLI: Submit job description
+    CLI->>Graph: ainvoke initial state
+    Graph->>Search: semantic + keyword search
+    Search-->>Graph: ranked candidate records
+    Graph-->>CLI: Round 1 report + interrupt
+
+    loop Recruiter review
+        Recruiter->>CLI: refine / compare / next round
+        CLI->>Graph: Command(resume=feedback)
+        Graph-->>CLI: updated report + interrupt
+    end
+
+    Recruiter->>CLI: next round to Round 3
+    CLI->>Graph: resume checkpoint
+    Graph->>Client: read_file(resume_path)
+    Client->>Server: tools/call
+    Server->>FS: validate and extract
+    alt Read succeeds
+        FS-->>Server: content and metadata
+        Server-->>Client: structured success result
+        Client-->>Graph: normalized content
+        Graph-->>CLI: recommendation + questions
+    else Read fails
+        FS-->>Server: domain failure
+        Server-->>Client: structured error result
+        Client-->>Graph: normalized failure
+        Graph-->>CLI: safe fallback report
+    end
+~~~
+
+## Batch-processing flow
+
+~~~mermaid
+flowchart TD
+    Call[batch_process request] --> Validate{Operation valid?}
+    Validate -->|No| Invalid[Return invalid-operation error]
+    Validate -->|Yes| Limit[Apply bounded concurrency]
+    Limit --> FanOut{Process each path}
+    FanOut --> Read[Read]
+    FanOut --> Search[Search]
+    FanOut --> Ingest[Ingest]
+    Read --> Collect[Preserve input order]
+    Search --> Collect
+    Ingest --> Collect
+    Collect --> Summary[Return per-file results<br/>succeeded and failed counts]
+~~~
+
+One file failure does not cancel the remaining batch. Each item retains its own structured success or error result.
+
+## Directory-watching and ingestion flow
+
+~~~mermaid
+flowchart TD
+    Start[watch_directory: start] --> ValidateRoot{Allowed directory?}
+    ValidateRoot -->|No| Reject[Structured error]
+    ValidateRoot -->|Yes| Watcher[Start watchdog observer]
+    Watcher --> Event[Created or modified event]
+    Event --> Supported{Supported extension?}
+    Supported -->|No| Ignore[Ignore event]
+    Supported -->|Yes| Duplicate{Inside debounce window?}
+    Duplicate -->|Yes| Ignore
+    Duplicate -->|No| Pending[Record pending event]
+    Pending --> Auto{Auto-ingest enabled?}
+    Auto -->|No| Detected[Record detected status]
+    Auto -->|Yes| Worker[Background ingestion executor]
+    Worker --> Extract[Extract metadata and text]
+    Extract --> Chunk[Chunk content]
+    Chunk --> Embed[Generate local embeddings]
+    Embed --> Upsert[(ChromaDB upsert)]
+    Upsert --> Processed[Record processed status]
+    Worker -->|exception| Failed[Record failed status]
+    Processed --> Status[watch_directory: status]
+    Failed --> Status
+    Detected --> Status
+    Status --> Stop[watch_directory: stop]
 ~~~

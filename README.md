@@ -20,7 +20,7 @@ The optional multi-MCP bonus is not implemented. The core assignment does not re
 
 The agent never reads resume files directly. It discovers the filesystem server's capabilities through MCP, uses Chroma to rank candidates, and calls the MCP `read_file` tool when detailed resume content is needed.
 
-See the [state machine and interaction diagrams](docs/state_machine.md), [test scenarios](docs/test_scenarios.md), and [demo recording script](docs/demo_script.md).
+See the [state machine and interaction diagrams](docs/state_machine.md) and [test scenarios](docs/test_scenarios.md).
 
 ## Setup
 

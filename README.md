@@ -2,6 +2,10 @@
 
 A production-oriented resume matching system that replaces direct filesystem access with a Model Context Protocol (MCP) server. It combines safe file operations, batch processing, directory watching, Chroma-based retrieval, and a three-round LangGraph workflow behind a Rich terminal interface.
 
+## Demo video
+
+[Watch the MCP Integration demonstration on Google Drive](https://drive.google.com/file/d/1yanPze3pjYcZuATNS4I4rwfibtl8qiBO/view?usp=drive_link)
+
 ## Assignment coverage
 
 - JSON-RPC 2.0 MCP server over stdio or Streamable HTTP
